@@ -6,12 +6,11 @@ import { ref } from "vue";
 const props = defineProps(['title', 'min', 'max', 'step'])
 
 const titlec = ref(props.title)
+
 // Define events that will be accessible from parent component
 const emits = defineEmits(['updateValue'])
 
-
-
-var sliderValue = ref(25)
+var sliderValue = ref(10);
 
 function sendValueUpate()
 {
@@ -40,19 +39,20 @@ function sendValueUpate()
 <style scoped>
 .modern-range {
   -webkit-appearance: none;
+  appearance: none;
   width: 100%;
-  background: linear-gradient(90deg, #f19af3, #f099b5);
-  height: 17px;
-  border-radius: 15px;
+  background: linear-gradient(90deg, #94c0dc, #1f477b);
+  height: 27px;
+  border-radius: 1px;
   margin: 10px 0px;
 }
 
 .modern-range::-webkit-slider-thumb {
   -webkit-appearance: none;
-  height: 15px;
-  width: 15px;
+  height: 20px;
+  width: 10px;
   border-radius: 15px;
-  background-color: black;
+  background-color: rgb(255, 255, 255);
   cursor: pointer;
 }
 </style>

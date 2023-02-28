@@ -15,7 +15,10 @@ import { ref } from "vue";
 
 // Define variables and constants
 var count = ref(0);
-var firstSlider = ref(25);
+var firstSlider = ref(10);
+var secondSlider = ref(3);
+var thirdSlider = ref(100);
+var fourthSlider = ref(16);
 var runToggle = ref(false);
 
 // Define functions
@@ -25,9 +28,26 @@ function increment() {
 }
 
 function updateValue(newValue, parameterName) {
-  if (parameterName === "Height") {
+  if (parameterName === "radius") {
     firstSlider.value = newValue;
   }
+  }
+  function updateValue1(newValue, parameterName) {
+  if (parameterName === "tube") {
+    secondSlider.value = newValue;
+  }
+}
+  function updateValue2(newValue, parameterName) {
+  
+  if (parameterName === "tubular segments") {
+    thirdSlider.value = newValue;
+  }
+}
+  function updateValue3(newValue, parameterName) {
+  
+  if (parameterName === "radial segments") {
+    fourthSlider.value = newValue;
+  }  
 }
 
 function updateToggle(newValue) {
@@ -41,7 +61,7 @@ with data, objects, functions etc. -->
   <div id="top-bar">
     <div id="title-container">
       <img class="logo-image" alt="Iaac logo" src="./assets/iaac-white.png" />
-      <h2>Digital Tools for Cloud-based Data Management</h2>
+      <h2>Digital Tools for Cloud-based Data Management Eugenia Raigada</h2>
     </div>
   </div>
 
@@ -53,18 +73,30 @@ with data, objects, functions etc. -->
     <div>
       <!-- Vue component injected into App.vue component template.
       That makes it App.vue a parent and SliderInput.vue a child. -->
-      <SliderInput title="Height"
-        v-bind:min="1" v-bind:max="50" v-bind:step="1"
+      <SliderInput title="radius"
+        v-bind:min="1" v-bind:max="20" v-bind:step="1"
         v-on:updateValue="updateValue"/>
+       <SliderInput title="tube"
+        v-bind:min="1" v-bind:max="10" v-bind:step="1"
+        v-on:updateValue1="updateValue1"/>
+      <SliderInput title="tubular segments"
+        v-bind:min="1" v-bind:max="100" v-bind:step="1"
+        v-on:updateValue2="updateValue2"/>
+      <SliderInput title="radial segments"
+        v-bind:min="1" v-bind:max="50" v-bind:step="1"
+        v-on:updateValue3="updateValue3"/>
 
       <ToggleInput title="Run?" v-on:updateValue="updateToggle"></ToggleInput>
 
       <h2>Value received in App.vue: {{ firstSlider }}</h2>
+      <h2>Value received in App.vue: {{ secondSlider }}</h2>
+      <h2>Value received in App.vue: {{ thirdSlider }}</h2>
+      <h2>Value received in App.vue: {{ fourthSlider }}</h2>
       <h2>Value received in App.vue: {{ runToggle }}</h2>
     </div>
 
     <div id="content">
-      <GeometryView :size="firstSlider" />
+      <GeometryView :size="firstSlider" :size1="secondSlider" :size2="thirdSlider" :size3="fourthSlider" />
 
       <!-- uncomment to add another geometryview -->
       <!-- <GeometryView :size="firstSlider"/> -->
@@ -74,6 +106,7 @@ with data, objects, functions etc. -->
 
 <!-- Style is for CSS styling -->
 <style>
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -86,7 +119,7 @@ with data, objects, functions etc. -->
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0);
 }
 
 #title-container {
@@ -98,12 +131,15 @@ with data, objects, functions etc. -->
 
 #content {
   display: flex;
+  background-color: rgb(0, 0, 0);
 }
 
 .logo-image {
   height: 3.25rem;
   padding: 0.5rem;
 }
+
+
 
 h2 {
   font-size: 1.125rem;

@@ -11,7 +11,7 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
 // Property coming from parent component
-const props = defineProps(["size"]);
+const props = defineProps(["size","size1","size2","size3"]);
 
 // Three js objects
 let renderer, camera, scene, controls, geometry;
@@ -32,13 +32,13 @@ function init() {
 
   // scene
   scene = new THREE.Scene();
-  scene.background = new THREE.Color("#f5f6fa");
+  scene.background = new THREE.Color("#0a0a0a");
 
   // orbit controls
   controls = new OrbitControls(camera, renderer.domElement);
 
   // add fun shape
-  createBox(25, 25, 25);
+  createTorus(10, 3, 100, 16);
   animate();
 }
 
@@ -49,16 +49,16 @@ function animate() {
   renderer.render(scene, camera);
 }
 
-function createBox(l, w, h) {
-  geometry = new THREE.BoxGeometry(l, w, h);
+function createTorus(a, b, c, d) {
+  geometry = new THREE.TorusKnotGeometry(a, b, c, d);
   const material = new THREE.MeshNormalMaterial();
-  const sphere = new THREE.Mesh(geometry, material);
-  scene.add(sphere);
+  const Torus = new THREE.Mesh(geometry, material);
+  scene.add(Torus);
 }
 
 function onSliderChange(color) {
   scene.clear();
-  createBox(props.size, props.size, props.size);
+  createTorus(props.size, props.size1, props.size2, props.size3);
 }
 
 // This function runs at the beginning of the component lifecycle.
@@ -78,10 +78,10 @@ onUpdated(() => {
 <style scoped>
 #viewport {
   border-style: dashed;
-  border-color: #d2dfe8;
+  border-color: #213b4d;
   border-width: 4px;
   border-radius: 10px;
-  margin: 12px;
+  margin: 22px;
   height: calc(100vh - 105px);
   width: 600px;
   min-width: 200px;
